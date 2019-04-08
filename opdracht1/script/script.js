@@ -3,42 +3,42 @@ var getList = document.getElementById("list");
 
 
 function LikeFunction0() {
-    getLike[0].src = "../animation/interaction.gif";
+    getLike[0].src = "https://github.com/X-Track/frontendvoordesigners/blob/master/opdracht1/animation/interaction.gif";
     getList.innerHTML +="<li><p>Greta</p></li>";
 }
 
 function LikeFunction1() {
-    getLike[1].src = "../animation/interaction1.gif";
+    getLike[1].src = "https://github.com/X-Track/frontendvoordesigners/blob/master/opdracht1/animation/interaction1.gif";
     getList.innerHTML +="<li><p>Sonchiriya</p></li>";
 }
 
 function LikeFunction2() {
-    getLike[2].src = "../animation/interaction2.gif";
+    getLike[2].src = "https://github.com/X-Track/frontendvoordesigners/blob/master/opdracht1/animation/interaction2.gif";
     getList.innerHTML +="<li><p>a medea family funeral</p></li>";
 }
 
 function LikeFunction3() {
-    getLike[3].src = "../animation/interaction.gif";
+    getLike[3].src = "https://github.com/X-Track/frontendvoordesigners/blob/master/opdracht1/animation/interaction3.gif";
     getList.innerHTML +="<li><p>climax</p></li>";
 }
 
 function LikeFunction4() {
-    getLike[4].src = "../animation/interaction1.gif";
+    getLike[4].src = "https://github.com/X-Track/frontendvoordesigners/blob/master/opdracht1/animation/interaction4.gif";
     getList.innerHTML +="<li><p>styx</p></li>";
 }
 
 function LikeFunction5() {
-    getLike[5].src = "../animation/interaction2.gif";
+    getLike[5].src = "https://github.com/X-Track/frontendvoordesigners/blob/master/opdracht1/animation/interaction5.gif";
     getList.innerHTML +="<li><p>transit</p></li>";
 }
 
 function LikeFunction6() {
-    getLike[6].src = "../animation/interaction.gif";
+    getLike[6].src = "https://github.com/X-Track/frontendvoordesigners/blob/master/opdracht1/animation/interaction6.gif";
     getList.innerHTML +="<li><p>saint judy</p></li>";
 }
 
 function LikeFunction7() {
-    getLike[7].src = "../animation/interaction1.gif";
+    getLike[7].src = "https://github.com/X-Track/frontendvoordesigners/blob/master/opdracht1/animation/interaction7.gif";
     getList.innerHTML +="<li><p>stray</p></li>";
 }
 
