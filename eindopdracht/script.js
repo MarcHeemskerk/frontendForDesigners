@@ -39,7 +39,7 @@ background_images[16] = "images/img_10.png";
 background_images[17] = "images/img_10.png";
 background_images[18] = "images/img_10.png";
 background_images[19] = "images/img_10.png";
-background_images[20] = "images/d11.png";
+background_images[20] = "images/night.png";
 
 // Get html elements
 var remaining = document.querySelector('.playground_sunSetRise__title');
