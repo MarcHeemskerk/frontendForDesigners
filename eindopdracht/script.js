@@ -1,5 +1,5 @@
 var startGIf = new Date().getTime() / 1000;
-var endGIf = startGIf + 9;
+var endGIf = startGIf + 8.5;
 var rotate = 0;
 
 // make Array to covert number to string.
@@ -16,6 +16,7 @@ month[8] = "Sep";
 month[9] = "Oct";
 month[10] = "Nov";
 month[11] = "Dec";
+
 // make an Array for getting images url
 var background_images = new Array();
 background_images[0] = "images/img_0.png";
@@ -33,15 +34,23 @@ background_images[11] = "images/img_10.png";
 background_images[12] = "images/img_10.png";
 background_images[13] = "images/img_10.png";
 background_images[14] = "images/img_10.png";
-background_images[15] = "images/d11.png";
+background_images[15] = "images/img_10.png";
+background_images[16] = "images/img_10.png";
+background_images[17] = "images/img_10.png";
+background_images[18] = "images/img_10.png";
+background_images[19] = "images/img_10.png";
+background_images[20] = "images/d11.png";
 
 // Get html elements
 var remaining = document.querySelector('.playground_sunSetRise__title');
 var subtitle = document.querySelector('.playground_sunSetRise__subtitle');
+var resetdate = document.querySelector('.playground_sunSetRise__resettitle');
 var sunrise = document.querySelector('.playground_sunSetRise__sunrisevalue');
 var sunset = document.querySelector('.playground_sunSetRise__sunsetvalue');
 var backgroundImage = document.querySelector('.playground_sunSetRise__city-static');
 var backgroundImageGif = document.querySelector('.playground_sunSetRise__city-gif');
+var buttonLeft = document.querySelector('.playground_sunSetRise__buttonLeft');
+var buttonRight = document.querySelector('.playground_sunSetRise__buttonRight');
 
 //OLD HRLM ELEMENTS!
 /*
@@ -71,9 +80,19 @@ var getMonthYeetTomorrow;
 var getYearYeetTomorrow;
 // Interval for countdown
 var intervalID;
+
 document.addEventListener("DOMContentLoaded", function (e) {
     clearInterval(intervalID);
     console.log(plusdays);
+
+    //Set to invisable.
+    buttonLeft.style.opacity = "0";
+    resetdate.style.opacity = "0";
+    remaining.style.opacity = "0";
+    subtitle.style.opacity = "0";
+    sunrise.style.opacity = "0";
+    sunset.style.opacity = "0";
+
     if (plusdays.value == '') {
         getDate(0);
     } else {
@@ -83,54 +102,81 @@ document.addEventListener("DOMContentLoaded", function (e) {
     // Run de scripts once
     getSunsetSunrise(currentDate);
 });
+
 // Listen to enter key on entire document
 document.addEventListener("keydown", function (e) {
-    if (e.keyCode === 38) { //checks whether the pressed key is "up"
-        clearInterval(intervalID);
-        plusdays++;
-        console.log(plusdays);
-        // Solving the --days errors
-        if (plusdays <= 0) {
-            plusdays = 0;
-        }
-        //A floating point number parsed from the given value. If the value cannot be converted to a number, NaN is returned.
-        getDate(parseFloat(plusdays));
-        // Run de scripts once
-        getSunsetSunrise(currentDate);
-    } else if (e.keyCode === 40) { //checks whether the pressed key is "down"
-        clearInterval(intervalID);
-        plusdays--;
-        console.log(plusdays);
-        // Solving the --days errors
-        if (plusdays <= 0) {
-            plusdays = 0;
-        }
-        //A floating point number parsed from the given value. If the value cannot be converted to a number, NaN is returned.
-        getDate(parseFloat(plusdays));
-        getSunsetSunrise(currentDate);
+    if (e.keyCode === 39) { //checks whether the pressed key is "up"
+        plusdate();
+    } else if (e.keyCode === 37) { //checks whether the pressed key is "down"
+        mindate();
     } else if (e.keyCode === 82) { //checks whether the pressed key is "r"
-        clearInterval(intervalID);
-        plusdays = 0
-        console.log(plusdays);
-        // Solving the --days errors
-        if (plusdays <= 0) {
-            plusdays = 0;
-        }
-        //A floating point number parsed from the given value. If the value cannot be converted to a number, NaN is returned.
-        getDate(parseFloat(plusdays));
-        // Run de scripts once
-        getSunsetSunrise(currentDate);
-    } else if (e.keyCode === 13) { //checks whether the pressed key is "Enter"
-        clearInterval(intervalID);
-        var getRandom = Math.floor(Math.random() * 101);
-        plusdays = getRandom;
-        console.log(plusdays);
-        //A floating point number parsed from the given value. If the value cannot be converted to a number, NaN is returned.
-        getDate(parseFloat(plusdays));
-        // Run de scripts once
-        getSunsetSunrise(currentDate);
+        resetdate();
     }
 });
+
+function plusdate() {
+    plusdays++;
+    console.log(plusdays);
+
+    // Solving the --days errors
+    if (plusdays <= 0) {
+        plusdays = 0;
+        buttonLeft.style.opacity = "0";
+        resetdate.style.opacity = "0";
+    } else {
+        buttonLeft.style.opacity = "1";
+        resetdate.style.opacity = "1";
+    }
+    //A floating point number parsed from the given value. If the value cannot be converted to a number, NaN is returned.
+    getDate(parseFloat(plusdays));
+
+    // Run de scripts once
+    getSunsetSunrise(currentDate);
+};
+
+function mindate() {
+    plusdays--;
+    console.log(plusdays);
+
+    // Solving the --days errors
+    if (plusdays <= 0) {
+        plusdays = 0;
+        buttonLeft.style.opacity = "0";
+        resetdate.style.opacity = "0";
+    } else {
+        buttonLeft.style.opacity = "1";
+        resetdate.style.opacity = "1";
+    }
+    //A floating point number parsed from the given value. If the value cannot be converted to a number, NaN is returned.
+    getDate(parseFloat(plusdays));
+
+    // Run de scripts once
+    getSunsetSunrise(currentDate);
+};
+
+function dateresetter() {
+    plusdays = 0;
+    console.log(plusdays);
+
+    // Solving the --days errors
+    if (plusdays <= 0) {
+        plusdays = 0;
+        buttonLeft.style.opacity = "0";
+        resetdate.style.opacity = "0";
+    } else {
+        buttonLeft.style.opacity = "1";
+        resetdate.style.opacity = "1";
+    }
+    //A floating point number parsed from the given value. If the value cannot be converted to a number, NaN is returned.
+    getDate(parseFloat(plusdays));
+
+    // Run de scripts once
+    getSunsetSunrise(currentDate);
+};
+
+buttonRight.addEventListener("click", plusdate);
+buttonLeft.addEventListener("click", mindate);
+resetdate.addEventListener("click", dateresetter);
 
 // Get date with offset
 function getDate(yeet) {
@@ -152,6 +198,7 @@ function getDate(yeet) {
     getDateYeetTomorrow = getDateYeetTomorrow.toString();
     getYearYeetTomorrow = nextDay.getFullYear();
     getYearYeetTomorrow = getYearYeetTomorrow.toString();
+
     return currentDate;
 }
 
@@ -188,8 +235,8 @@ function controller(jsonObj) {
     var sunriseData = jsonObj.results.sunrise;
     var sunsetData = jsonObj.results.sunset;
     console.log(jsonObj.results);
-    console.log('Sunrise' + sunriseData);
-    console.log('Sunset' + sunsetData);
+    console.log("Sunrise: " + sunriseData);
+    console.log("Sunset: " + sunsetData);
     clearInterval(intervalID);
     intervalID = setInterval(function () {
         remainingTime(sunsetData, sunriseData)
@@ -197,6 +244,16 @@ function controller(jsonObj) {
 }
 
 function remainingTime(valueSunset, valueSunrise) {
+
+    if (new Date().getTime() / 1000 < endGIf) {
+        return;
+    }
+
+    backgroundImage.style.opacity = "1";
+    remaining.style.opacity = "1";
+    subtitle.style.opacity = "1";
+    sunrise.style.opacity = "1";
+    sunset.style.opacity = "1";
     // Sunrise date
     var countDownDateSunrise = new Date(getMonthYeet + " " + getDateYeet + ", " + getYearYeet + " " + valueSunrise).getTime();
     // Sunset date
@@ -208,6 +265,7 @@ function remainingTime(valueSunset, valueSunrise) {
     var distanceSunset = countDownDateSunset - now;
     var distanceSunrise = countDownDateSunrise - now;
     var distanceSunriseTomorrow = countDownDateSunsetTomorrow - now;
+
     //format ("Mar 29, 2019 6:08:21")
     //var countDownDate = new Date("Mar 29, 2019 6:08:21").getTime();
     if (distanceSunrise > 0) {
@@ -220,8 +278,8 @@ function remainingTime(valueSunset, valueSunrise) {
         sunAndMoon(hours, minutes, seconds, night);
         remaining.innerHTML = 'Sunrise in: ' + days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
         subtitle.innerHTML = getDateYeet + " / " + getMonthYeet + " / " + getYearYeet;
-        sunrise.innerHTML = "Sunrise Time:" + valueSunrise;
-        sunset.innerHTML = "Sunset Time:" + valueSunset;
+        sunrise.innerHTML = "Sunrise Time: " + valueSunrise;
+        sunset.innerHTML = "Sunset Time: " + valueSunset;
     } else if (distanceSunrise < 0 && distanceSunset > 0) {
         day = "day";
         var days = Math.floor(distanceSunset / (1000 * 60 * 60 * 24));
@@ -231,8 +289,8 @@ function remainingTime(valueSunset, valueSunrise) {
         sunAndMoon(hours, minutes, seconds, day);
         remaining.innerHTML = 'Sunset in: ' + days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
         subtitle.innerHTML = getDateYeet + " / " + getMonthYeet + " / " + getYearYeet;
-        sunrise.innerHTML = "Sunset Time:" + valueSunset;
-        sunset.innerHTML = "Sunrise Time:" + valueSunrise;
+        sunrise.innerHTML = "Sunset Time: " + valueSunset;
+        sunset.innerHTML = "Sunrise Time: " + valueSunrise;
     } else {
         dezeManBlijftVeesteLangKijken++;
         clearInterval(intervalID);
@@ -240,19 +298,16 @@ function remainingTime(valueSunset, valueSunrise) {
         getSunsetSunrise(currentDate);
     }
 }
+
 function sunAndMoon(h, m, s, dorn) {
     if (dorn == "day") {
-        if (new Date().getTime() / 1000 > endGIf) {
             backgroundImage.style.backgroundImage = "url('" + background_images[h] + "')";
             backgroundImage.style.opacity = '1';
             backgroundImageGif.style.opacity = '0';
-        }
     } else if (dorn == "night") {
-        if (new Date().getTime() / 1000 > endGIf) {
-            backgroundImage.style.backgroundImage = "url('" + background_images[15] + "')";
+            backgroundImage.style.backgroundImage = "url('" + background_images[20] + "')";
             backgroundImage.style.opacity = '1';
             backgroundImageGif.style.opacity = '0';
-        }
     } else {
         console.log('you have been yeeted');
     }
@@ -273,7 +328,7 @@ var allowedKeys = {
 // the official Konami Code sequence
 var konamiCode = ['up', 'up', 'down', 'down', 'left', 'right', 'left', 'right', 'b', 'a'];
 var konamiCodePosition = 0;
-document.addEventListener('keydown', function(e) {
+document.addEventListener('keydown', function (e) {
     // get the value of the key code from the key map
     var key = allowedKeys[e.keyCode];
     var requiredKey = konamiCode[konamiCodePosition];
@@ -294,6 +349,6 @@ document.addEventListener('keydown', function(e) {
 function yeetMode() {
     console.log('yeetMode activated');
     rotate = rotate + 360;
-    backgroundImage.style.transform = 'rotate('+ rotate +'deg)';
-    backgroundImageGif.style.transform = 'rotate('+ rotate +'deg)';
+    backgroundImage.style.transform = 'rotate(' + rotate + 'deg)';
+    backgroundImageGif.style.transform = 'rotate(' + rotate + 'deg)';
 }
