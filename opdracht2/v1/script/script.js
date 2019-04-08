@@ -1,7 +1,3 @@
-// triangulation using https://github.com/ironwallaby/delaunay
-/*jslint browser: true, devel: true, eqeq: true, plusplus: true, sloppy: true, vars: true, white: true*/
-/*eslint-env browser*/
-/*eslint 'no-console':0*/
 
 
 var btn = document.querySelectorAll("button");
@@ -9,6 +5,7 @@ var images = document.querySelectorAll(".photos");
 var dots = document.querySelectorAll(".fa-circle");
 var PlayAndPause = document.querySelector("header i");
 var allDots = document.querySelector(".circle");
+console.log("alldots",allDots);
 var ShowSlide = 1;
 var interval;
 var intervalTime = 2000;
@@ -137,12 +134,14 @@ PlayAndPause.addEventListener("click", autoPlay);
 
 var dotPress;
 allDots.addEventListener('click', (dotPress) => {
+    console.log("joe",allDots)
 
     var i;
     for (i = 0; i < images.length; i++) {
         images[i].style.display = "none";
     }
 
+    console.log("dotPress.target",dotPress.target);
     if (dotPress.target.classList.contains("0")) {
         images[0].style.display = "block";
         ShowSlide =1;

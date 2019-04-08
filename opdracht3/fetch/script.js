@@ -1,118 +1,238 @@
-//script.js
-//console.log(this);
-//var uri = "https://api.data.amsterdam.nl/panorama/recente_opnames/2018/?format=json";
-//var uri = "https://open.data.amsterdam.nl/Attracties.json";
-//var uri = "https://open.data.amsterdam.nl/Activiteiten.json";
-//var uri = "https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json";
-var uri = "http://dennistel.nl/movies";
+ // Get right month
 
-var section = document.querySelector('section');
-var button = document.querySelector("button");
-var loaderElement = document.querySelector("span");
-console.log("loaderElement",loaderElement);
+ var sky = document.querySelector('.playground_sunSetRise__sky');
+ var hours = new Date().getHours()
 
-////https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON
-function showData(jsonObj) {
-  var films = jsonObj;
-  console.log("showData films",films);
+ if (hours > 6 && hours < 18) {
+     sky.style.backgroundColor = "#87ceeb";
+ } else {
+     sky.style.backgroundColor = "#010b13";
+ }
 
-  for (var i = 0; i < films.length; i++) {
-    console.log("film " + i);
-    var filmpiekijken = document.createElement('article');
-
-    var filmtitel = document.createElement('h2');
-    filmtitel.textContent = films[i].title;
-    var filmplot = document.createElement('p');
-    filmplot.textContent = films[i].simple_plot;
-    var filmcover = document.createElement('img');
-    filmcover.src = films[i].cover;
-    //myImg.textContent = films[i].cover;
-    console.log(filmcover.src);
-
-    var reviewslezen = document.createElement('ul');
-    var reviews = films[i].reviews;
-    for (var j = 0; j < reviews.length; j++) {
-      var listItem = document.createElement('li');
-      listItem.textContent = reviews[j].score + ' - ' + reviews[j].created_at;
-      reviewslezen.appendChild(listItem);
-    }
-
-    filmpiekijken.appendChild(filmtitel);
-    filmpiekijken.appendChild(filmplot);
-    filmpiekijken.appendChild(filmcover);
-    filmpiekijken.appendChild(reviewslezen);
-
-    section.appendChild(filmpiekijken);
-  }
-}
-
-//https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
-//https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
-function loadimagesmetXHR(){
-  var request = new XMLHttpRequest();
-  request.open('get', uri);
-  request.responseType = 'json';
-  //request.responseType = 'text'; // now we're getting a string!
-  request.send();
-
-  request.addEventListener("load", function(){
-    //console.log("request load: ",request.response);
-    loaderElement.classList.remove('show');
-    showData(request.response);
-  });
-//  request.onload = function() {
-//      console.log("request.onload: ",request.response);
-//    }
-  request.timeout = 10000; // time in milliseconds
-  request.ontimeout = function(e) {
-    // XMLHttpRequest timed out. Do something here.
-    console.log("ontimeout: " +request.timeout+", het laden duurt te lang !",e);
-  };
-  request.onerror = function() {
-      console.log('Fetch Error', request.status);
-  };
-}
-//loadimagesmetXHR();
-
-//actie
-button.onclick = function(){
-  loaderElement.classList.add('show');
-  this.classList.add('hide');
-  section.innerHTML = ""; //main leeghalen. just in case
-  loadimagesmetXHR();
-};
+ var month = new Array();
+ month[0] = "Jan";
+ month[1] = "Feb";
+ month[2] = "Mar";
+ month[3] = "Apr";
+ month[4] = "May";
+ month[5] = "Jun";
+ month[6] = "Jul";
+ month[7] = "Aug";
+ month[8] = "Sep";
+ month[9] = "Oct";
+ month[10] = "Nov";
+ month[11] = "Dec";
 
 
+ // Get html elements
+ var number = document.querySelector('.playground_sunSetRise__days');
+ var remaining = document.querySelector('.playground_sunSetRise__title');
+ var subtitle = document.querySelector('.playground_sunSetRise__subtitle');
+ var sunrise = document.querySelector('.playground_sunSetRise__sunrisevalue');
+ var sunset = document.querySelector('.playground_sunSetRise__sunsetvalue');
+
+ var sun = document.querySelector('.playground_sunSetRise__sun-container');
+ var moon = document.querySelector('.playground_sunSetRise__moon-container');
+
+ console.log(remaining);
+ console.log(number);
+
+ // Json requirements
+ var lat;
+ var lng;
+ var requestURL;
+ var night;
+ var day;
+
+ var currentDate;
+ var nextDay;
 
 
+ // User day
+ var getDateYeet;
+ var getMonthYeet;
+ var getYearYeet;
+
+ // Next day
+ var getDateYeetTomorrow;
+ var getMonthYeetTomorrow;
+ var getYearYeetTomorrow;
+
+ // Interval for countdown
+ var intervalID;
+
+ // Listen to enter key on entire document
+ document.addEventListener("keydown", function (e) {
+     if (e.keyCode === 13) { //checks whether the pressed key is "Enter"
+         clearInterval(intervalID);
+         console.log(number.value);
+         if (number.value == '') {
+             getDate(0);
+         } else {
+             getDate(parseFloat(number.value));
+         }
+         // Run de scripts once
+         getSunsetSunrise(currentDate);
+
+     }
+ });
 
 
-function loadRestApiFetch(){ //Rest Api call met Fetchs
-  console.log("function loadRestApiFetch");
+ document.addEventListener("DOMContentLoaded", function (e) {
+     clearInterval(intervalID);
+     console.log(number.value);
+     if (number.value == '') {
+         getDate(0);
+     } else {
+         getDate(parseFloat(number.value));
+     }
+     // Run de scripts once
+     getSunsetSunrise(currentDate);
 
-  loaderElement.classList.add('show');
-  fetch(uri)
-    .then(function(response) {
-      console.log(response.headers.get('Content-Type'));
-      console.log(response.headers.get('Date'));
+ });
 
-      console.log(response.status);
-      console.log(response.statusText);
-      console.log(response.type);
-      console.log(response.url);
+ // Get date with offset
+ function getDate(yeet) {
+     // Day of user
+     currentDate = new Date();
+     currentDate.setDate(currentDate.getDate() + yeet);
 
-      return response.json();
-    })
-    .then(function(myJson) {
-      console.log('Request successful', myJson);
-      //eerst de loader weg halen !
-      loaderElement.classList.remove('show');
-      //dan de html renderen
-      //document.querySelector("p").innerHTML="joehoe";
-      //console.log(myJson);
-    })
-    .catch(function(error) {
-      console.log('Request failed', error)
-    });
-}
-//loadRestApiFetch();
+     // Day/Month/Year of user
+     getMonthYeet = month[currentDate.getMonth()];
+
+     getDateYeet = currentDate.getDate();
+     getDateYeet = getDateYeet.toString();
+     getYearYeet = currentDate.getFullYear();
+     getYearYeet = getYearYeet.toString();
+
+     // Next day
+     nextDay = new Date();
+     nextDay.setDate(nextDay.getDate() + yeet + 1);
+
+     // Day/Month/Year of next day
+     getMonthYeetTomorrow = month[nextDay.getMonth()];
+     getDateYeetTomorrow = nextDay.getDate();
+     getDateYeetTomorrow = getDateYeetTomorrow.toString();
+     getYearYeetTomorrow = nextDay.getFullYear();
+     getYearYeetTomorrow = getYearYeetTomorrow.toString();
+
+     return currentDate;
+ }
+
+ function getSunsetSunrise(currentDate) {
+     date = currentDate.getFullYear() + '/' + currentDate.getMonth() + '/' + currentDate.getDate();
+     if (lat == undefined || lng == undefined) {
+         // Get location user
+         navigator.geolocation.getCurrentPosition(function (position) {
+             lat = position.coords.latitude;
+             lng = position.coords.longitude;
+             requestURL = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&date=${date}`;
+
+             secondPart(requestURL);
+         });
+     } else {
+         requestURL = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&date=${date}`;
+         secondPart(requestURL);
+         subtitle.innerHTML = getDateYeet + " / " + getMonthYeet + " / " + getYearYeet;
+     }
+ }
+
+ // Get sunset and sunrise
+ function secondPart(value) {
+     var request = new XMLHttpRequest();
+     request.open('GET', value);
+     request.responseType = 'json';
+     request.send();
+     request.onload = function () {
+         controller(request.response);
+     }
+ }
+
+ // Link everything together and set the countdown timer
+ function controller(jsonObj) {
+     var sunriseData = jsonObj.results.sunrise;
+     var sunsetData = jsonObj.results.sunset;
+
+     console.log(jsonObj.results);
+     console.log('Sunrise' + sunriseData);
+     console.log('Sunset' + sunsetData);
+
+     clearInterval(intervalID);
+     intervalID = setInterval(function () {
+         remainingTime(sunsetData, sunriseData)
+     }, 1000);
+ }
+
+ function remainingTime(valueSunset, valueSunrise) {
+     // Sunrise date
+     var countDownDateSunrise = new Date(getMonthYeet + " " + getDateYeet + ", " + getYearYeet + " " + valueSunrise).getTime();
+
+     // Sunset date
+     var countDownDateSunset = new Date(getMonthYeet + " " + getDateYeet + ", " + getYearYeet + " " + valueSunset).getTime();
+
+     // Sunrise tomorrow
+     var countDownDateSunsetTomorrow = new Date(getMonthYeetTomorrow + " " + getDateYeetTomorrow + ", " + getYearYeetTomorrow + " " + valueSunrise).getTime();
+
+     var dezeManBlijftVeesteLangKijken = 0;
+
+     var now = new Date().getTime();
+
+     var distanceSunset = countDownDateSunset - now;
+     var distanceSunrise = countDownDateSunrise - now;
+     var distanceSunriseTomorrow = countDownDateSunsetTomorrow - now;
+
+     //format ("Mar 29, 2019 6:08:21")
+     //var countDownDate = new Date("Mar 29, 2019 6:08:21").getTime();
+     if (distanceSunrise > 0) {
+         // Show sunrise time
+         night = "night";
+         var days = Math.floor(distanceSunrise / (1000 * 60 * 60 * 24));
+         var hours = Math.floor((distanceSunrise % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+         var minutes = Math.floor((distanceSunrise % (1000 * 60 * 60)) / (1000 * 60));
+         var seconds = Math.floor((distanceSunrise % (1000 * 60)) / 1000);
+
+         sunAndMoon(hours, minutes, seconds, night);
+
+         remaining.innerHTML = 'Sunrise in: ' + days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+         sunrise.innerHTML = "Sunrise Time:" + valueSunrise;
+         sunset.innerHTML = "Sunset Time:" + valueSunset;
+
+     } else if (distanceSunrise < 0 && distanceSunset > 0) {
+
+         day = "day";
+         var days = Math.floor(distanceSunset / (1000 * 60 * 60 * 24));
+         var hours = Math.floor((distanceSunset % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+         var minutes = Math.floor((distanceSunset % (1000 * 60 * 60)) / (1000 * 60));
+         var seconds = Math.floor((distanceSunset % (1000 * 60)) / 1000);
+
+         sunAndMoon(hours, minutes, seconds, day);
+
+         remaining.innerHTML = 'Sunset in: ' + days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+         sunrise.innerHTML = "Sunset Time:" + valueSunset;
+         sunset.innerHTML = "Sunrise Time:" + valueSunrise;
+     }
+
+     else {
+         dezeManBlijftVeesteLangKijken++;
+         clearInterval(intervalID);
+         getDate(parseFloat(number.value + dezeManBlijftVeesteLangKijken));
+         getSunsetSunrise(currentDate);
+     }
+ }
+
+ function sunAndMoon(h, m, s, dorn) {
+     if (dorn == "day") {
+         console.log("day");
+         sun.style.bottom = "60%";
+         moon.style.bottom = "0%";
+         sky.style.backgroundColor = "#87ceeb";
+
+     } else if (dorn == "night") {
+         console.log("night");
+         sun.style.bottom = "0%";
+         moon.style.bottom = "60%";
+         sky.style.backgroundColor = "#010b13";
+     }
+ }

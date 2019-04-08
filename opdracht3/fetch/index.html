@@ -1,21 +1,50 @@
-<html>
-  <head>
-    <title>FvD - Opdracht 3 - XMLHttpRequest</title>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <main>
-      <header>
-        <h1>Lekker films klikken</h1>
-      </header>
-      <button>laad data</button>
-      <span id=loader>Loading data ...</span>
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>Document</title>
+</head>
 
-      <!-- Hier wordt de html geinjecteerd-->
-      <section></section>
-    </main>
+<body>
 
+    <header class="playground_sunSetRise__header"></header>
+    <section class="playground_sunSetRise__section"></section>
+    <input class="playground_sunSetRise__days" type="number" style="width: 50vw;">
+
+    <h2 class="playground_sunSetRise__subtitle"></h2>
+    <h3 class="playground_sunSetRise__sunrisevalue"></h3>
+    <h3 class="playground_sunSetRise__sunsetvalue"></h3>
+    <div class="playground_sunSetRise">
+        <div class="playground_sunSetRise__container">
+            <h1 class="playground_sunSetRise__title"></h1>
+            <div class="playground_sunSetRise__sky"></div>
+
+
+            <!-- Moon make from CSS only -->
+            <div class="playground_sunSetRise__moon-container">
+                <div class="playground_sunSetRise__moon">
+                    <div class="playground_sunSetRise__moon-crater"></div>
+                    <div class="playground_sunSetRise__moon-crater"></div>
+                    <div class="playground_sunSetRise__moon-crater"></div>
+                </div>
+            </div>
+
+
+            <!-- Sun make from CSS only -->
+            <div class="playground_sunSetRise__sun-container">
+                <div class="playground_sunSetRise__sun">
+                    <div class="playground_sunSetRise__sun-crater"></div>
+                    <div class="playground_sunSetRise__sun-crater"></div>
+                    <div class="playground_sunSetRise__sun-crater"></div>
+                </div>
+            </div>
+            <div class="playground_sunSetRise__city"></div>
+        </div>
+    </div>
     <script src="script.js"></script>
-  </body>
+</body>
+
 </html>
