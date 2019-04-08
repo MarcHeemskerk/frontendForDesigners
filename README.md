@@ -1,8 +1,6 @@
 # frontend voor designers
 
 Dit is de [online url](https://x-track.github.io/frontendvoordesigners/) met de opdrachten om te kunnen bekijken en testen in een browser.
-- [Markup cheat sheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
-- [Getting started with GitHub Pages](https://guides.github.com/features/pages/)
 
 &nbsp;
 &nbsp;
