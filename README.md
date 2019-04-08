@@ -4,6 +4,13 @@ Dit is de [online url](https://x-track.github.io/frontendvoordesigners/) met de 
 - [Markup cheat sheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 - [Getting started with GitHub Pages](https://guides.github.com/features/pages/)
 
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
 Het vak bestaat uit 3 opdrachten:
 
 ### 1. [OPDRACHT 1](https://x-track.github.io/frontendvoordesigners/opdracht1)
@@ -15,16 +22,15 @@ Het vak bestaat uit 3 opdrachten:
 &nbsp;
 &nbsp;
 &nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
-<pre>
-hello, this is
-   just an     example
-....
-</pre>
+### [Gebruikte API](https://sunrise-sunset.org/api)
 
 Met de eindopdracht hebben we met API's gewerkt ik hed een zonsondergang en zonsopgang API gebruikt
 
-### [Gebruikte API](https://sunrise-sunset.org/api)
+&nbsp;
 
 Ik haal de JSON file op en verwerk dit in 3 stappen.
 
@@ -45,25 +51,39 @@ In de functie: function controller pak hij alleen de data uit de JSON die hij no
 
 
 
-#### Function remainingTime uitleg:
+### Function remainingTime uitleg:
 
 ##### Data laten na dat video afgespeeld is:
+<pre>
 Zoals je ziet in het begin van mijn website speeld een filmpje af. ik heb er voor gezorgd dat als hij klaar is pas de text inbeeld komt. door een lege return te geven aan het begin van de functie.
+</pre>
 
 ##### Verkeerde data uit de JSON:
+<pre>
 Ik kwam in de loop van tijd tegen dat de JSON verkeerde data terug gaf dus ik heb uiteindelijk met behulp van parseInt dit kunnen veranderen naar de juiste gegevens.
+</pre>
 
 ##### Heel lang kijken naar de website:
+<pre>
 Ook heb ik er voor gezorgd als iemand heel lang de website open heb dat hij op een gegeven moment ook zegd dat hij opnieuw de gegevens laad.
+</pre>
 
 ##### Alle verzaamelde datagoed zetten:
+<pre>
 Het volgende wat er moest gebeuren is de alle verzamelde data goed zetten voor gebruik van de countdown. het format wat ik heb gebruikt is: ("Mar 29, 2019 6:08:21").
+</pre>
 
 ##### Laten zien wanneer de data Sunset of Sunrise moet weergeven:
+<pre>
 Ik heb 2 if stakements gemaakt die checken of hij de coundown moet showen naar Sunset of Sunrise door de kijken welke coundown kleiner is ook heb ik in de else gezet dat hij alles even opnieuw moet checken. Als de gebruiker namenlijk 2 dagen lang zit te kijken klopt de data niet meer, omdat alle 2 de countdowns 0dagen 0uur 0minuten 0seconden zijn.
+</pre>
 
 ##### Achtergrond laten veranderen:
+<pre>
 Ook heb ik er voor gezorgd dat de achtergrond veranderd aan de hand van de countdown. Deze images haalt hij uit een Array. Ik heb deze gelukt aan een parameter die ik mee stuur in de function.
+</pre>
 
 ##### KonamiCode
->Als easteregg heb ik de konami code toegevoegd op mijn website. De konami code is een van de eerste cheatcodes die is toegevoegd in een spel. Veel websites van tegenwoordig hebben de konami code op hun website.
+<pre>
+Als easteregg heb ik de konami code toegevoegd op mijn website. De konami code is een van de eerste cheatcodes die is toegevoegd in een spel. Veel websites van tegenwoordig hebben de konami code op hun website.
+</pre>
