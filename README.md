@@ -16,6 +16,12 @@ Het vak bestaat uit 3 opdrachten:
 &nbsp;
 &nbsp;
 
+<pre>
+hello, this is
+   just an     example
+....
+</pre>
+
 Met de eindopdracht hebben we met API's gewerkt ik hed een zonsondergang en zonsopgang API gebruikt
 
 ### [Gebruikte API](https://sunrise-sunset.org/api)
