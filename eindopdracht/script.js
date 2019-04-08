@@ -2,6 +2,15 @@ var startGIf = new Date().getTime() / 1000;
 var endGIf = startGIf + 8.5;
 var rotate = 0;
 
+var sky = document.querySelector('.playground_sunSetRise__sky');
+
+var hours = new Date().getHours();
+if (hours > 6 && hours < 18) {
+    sky.style.backgroundColor = "#6daceb";
+} else {
+    sky.style.backgroundColor = "#010b13";
+}
+
 // make Array to covert number to string.
 var month = new Array();
 month[0] = "Jan";
@@ -248,7 +257,7 @@ function controller(jsonObj) {
     }, 1000);
 }
 
-function changeOpacity(){
+function changeOpacity() {
     backgroundImage.style.opacity = "1";
     remaining.style.opacity = "1";
     subtitle.style.opacity = "1";
@@ -266,7 +275,7 @@ function remainingTime(valueSunset, valueSunrise) {
 
     // https://www.w3schools.com/jsref/jsref_split.asp
     // Sunrise date
-    var countDownDateSunrise = new Date(getMonthYeet + " " + getDateYeet + ", " + getYearYeet + " " + valueSunrise).getTime() + (2*60*60*1000);
+    var countDownDateSunrise = new Date(getMonthYeet + " " + getDateYeet + ", " + getYearYeet + " " + valueSunrise).getTime() + (2 * 60 * 60 * 1000);
     // Split the string for adding of summertime
 
     parts = valueSunrise.split(":");
@@ -275,7 +284,7 @@ function remainingTime(valueSunset, valueSunrise) {
     valueSunrise = parts[0] + ":" + parts[1] + ":" + parts[2];
 
     // Sunset date
-    var countDownDateSunset = new Date(getMonthYeet + " " + getDateYeet + ", " + getYearYeet + " " + valueSunset).getTime() + (2*60*60*1000);
+    var countDownDateSunset = new Date(getMonthYeet + " " + getDateYeet + ", " + getYearYeet + " " + valueSunset).getTime() + (2 * 60 * 60 * 1000);
     // Split the string for adding of summertime
     parts = valueSunset.split(":");
     // make number of string to add 2 hours
@@ -326,13 +335,13 @@ function remainingTime(valueSunset, valueSunrise) {
 
 function sunAndMoon(h, m, s, dorn) {
     if (dorn == "day") {
-            backgroundImage.style.backgroundImage = "url('" + background_images[h] + "')";
-            backgroundImage.style.opacity = '1';
-            backgroundImageGif.style.opacity = '0';
+        backgroundImage.style.backgroundImage = "url('" + background_images[h] + "')";
+        backgroundImage.style.opacity = '1';
+        backgroundImageGif.style.opacity = '0';
     } else if (dorn == "night") {
-            backgroundImage.style.backgroundImage = "url('" + background_images[20] + "')";
-            backgroundImage.style.opacity = '1';
-            backgroundImageGif.style.opacity = '0';
+        backgroundImage.style.backgroundImage = "url('" + background_images[20] + "')";
+        backgroundImage.style.opacity = '1';
+        backgroundImageGif.style.opacity = '0';
     } else {
         console.log('you have been yeeted');
     }
