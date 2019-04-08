@@ -8,7 +8,9 @@ Het vak bestaat uit 3 opdrachten:
 
 
 [opdracht 1](https://x-track.github.io/frontendvoordesigners/opdracht1)
+
 [opdracht 2](https://x-track.github.io/frontendvoordesigners/opdracht2)
+
 [Eindopdarcht](https://x-track.github.io/frontendvoordesigners/eindopdracht)
 
 
