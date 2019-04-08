@@ -6,14 +6,13 @@ Dit is de [online url](https://x-track.github.io/frontendvoordesigners/) met de 
 
 Het vak bestaat uit 3 opdrachten:
 
+## [opdracht 1](https://x-track.github.io/frontendvoordesigners/opdracht1)
 
-[opdracht 1](https://x-track.github.io/frontendvoordesigners/opdracht1)
+## [opdracht 2](https://x-track.github.io/frontendvoordesigners/opdracht2)
 
-[opdracht 2](https://x-track.github.io/frontendvoordesigners/opdracht2)
-
-[Eindopdarcht](https://x-track.github.io/frontendvoordesigners/eindopdracht)
+## [Eindopdarcht](https://x-track.github.io/frontendvoordesigners/eindopdracht)
 
 
----
+
 - [Markup cheat sheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 - [Getting started with GitHub Pages](https://guides.github.com/features/pages/)
