@@ -12,6 +12,9 @@ Het vak bestaat uit 3 opdrachten:
 
 ### 3. [OPDRACHT 3](https://x-track.github.io/frontendvoordesigners/eindopdracht)
 
+&nbsp;
+&nbsp;
+&nbsp;
 
 Met de eindopdracht hebben we met API's gewerkt ik hed een zonsondergang en zonsopgang API gebruikt
 
@@ -57,4 +60,4 @@ Ik heb 2 if stakements gemaakt die checken of hij de coundown moet showen naar S
 Ook heb ik er voor gezorgd dat de achtergrond veranderd aan de hand van de countdown. Deze images haalt hij uit een Array. Ik heb deze gelukt aan een parameter die ik mee stuur in de function.
 
 ##### KonamiCode
->Als easteregg heb ik de konami code toegevoegd op mijn website. De konami ?code is een van de eerste cheatcodes die is toegevoegd in een spel. Veel websites van tegenwoordig hebben de konami code op hun website.
+>Als easteregg heb ik de konami code toegevoegd op mijn website. De konami code is een van de eerste cheatcodes die is toegevoegd in een spel. Veel websites van tegenwoordig hebben de konami code op hun website.
