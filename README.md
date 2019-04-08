@@ -56,5 +56,5 @@ Ik heb 2 if stakements gemaakt die checken of hij de coundown moet showen naar S
 ##### Achtergrond laten veranderen:
 Ook heb ik er voor gezorgd dat de achtergrond veranderd aan de hand van de countdown. Deze images haalt hij uit een Array. Ik heb deze gelukt aan een parameter die ik mee stuur in de function.
 
-##### konamiCode
-Als easteregg heb ik de konami code toegevoegd op mijn website. De konami code is een van de eerste cheatcodes die is toegevoegd in een spel. Veel websites van tegenwoordig hebben de konami code op hun website.
+##### KonamiCode
+>Als easteregg heb ik de konami code toegevoegd op mijn website. De konami ?code is een van de eerste cheatcodes die is toegevoegd in een spel. Veel websites van tegenwoordig hebben de konami code op hun website.
