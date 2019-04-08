@@ -66,24 +66,28 @@ var lng;
 var requestURL;
 var night;
 var day;
-var plusdays = 0;
+var plusdays;
+var parts;
+
 // current & Next day
 var currentDate;
 var nextDay;
+
 // User day
 var getDateYeet;
 var getMonthYeet;
 var getYearYeet;
+
 // Next day
 var getDateYeetTomorrow;
 var getMonthYeetTomorrow;
 var getYearYeetTomorrow;
+
 // Interval for countdown
 var intervalID;
 
 document.addEventListener("DOMContentLoaded", function (e) {
     clearInterval(intervalID);
-    console.log(plusdays);
 
     //Set to invisable.
     buttonLeft.style.opacity = "0";
@@ -93,12 +97,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
     sunrise.style.opacity = "0";
     sunset.style.opacity = "0";
 
-    if (plusdays.value == '') {
-        getDate(0);
-    } else {
-        //A floating point number parsed from the given value. If the value cannot be converted to a number, NaN is returned.
-        getDate(parseFloat(plusdays));
-    }
+    //devine plusdays;
+    plusdays = 0;
+    getDate(0);
+
     // Run de scripts once
     getSunsetSunrise(currentDate);
 });
@@ -235,12 +237,23 @@ function controller(jsonObj) {
     var sunriseData = jsonObj.results.sunrise;
     var sunsetData = jsonObj.results.sunset;
     console.log(jsonObj.results);
-    console.log("Sunrise: " + sunriseData);
-    console.log("Sunset: " + sunsetData);
+    console.log("JSON Sunrise: " + sunriseData);
+    console.log("JSON Sunset: " + sunsetData);
+
+
+
     clearInterval(intervalID);
     intervalID = setInterval(function () {
         remainingTime(sunsetData, sunriseData)
     }, 1000);
+}
+
+function changeOpacity(){
+    backgroundImage.style.opacity = "1";
+    remaining.style.opacity = "1";
+    subtitle.style.opacity = "1";
+    sunrise.style.opacity = "1";
+    sunset.style.opacity = "1";
 }
 
 function remainingTime(valueSunset, valueSunrise) {
@@ -249,15 +262,26 @@ function remainingTime(valueSunset, valueSunrise) {
         return;
     }
 
-    backgroundImage.style.opacity = "1";
-    remaining.style.opacity = "1";
-    subtitle.style.opacity = "1";
-    sunrise.style.opacity = "1";
-    sunset.style.opacity = "1";
+    changeOpacity();
+
+    // https://www.w3schools.com/jsref/jsref_split.asp
     // Sunrise date
-    var countDownDateSunrise = new Date(getMonthYeet + " " + getDateYeet + ", " + getYearYeet + " " + valueSunrise).getTime();
+    var countDownDateSunrise = new Date(getMonthYeet + " " + getDateYeet + ", " + getYearYeet + " " + valueSunrise).getTime() + (2*60*60*1000);
+    // Split the string for adding of summertime
+
+    parts = valueSunrise.split(":");
+    // make number of string to add 2 hours
+    parts[0] = parseInt(parts[0]) + 2;
+    valueSunrise = parts[0] + ":" + parts[1] + ":" + parts[2];
+
     // Sunset date
-    var countDownDateSunset = new Date(getMonthYeet + " " + getDateYeet + ", " + getYearYeet + " " + valueSunset).getTime();
+    var countDownDateSunset = new Date(getMonthYeet + " " + getDateYeet + ", " + getYearYeet + " " + valueSunset).getTime() + (2*60*60*1000);
+    // Split the string for adding of summertime
+    parts = valueSunset.split(":");
+    // make number of string to add 2 hours
+    parts[0] = parseInt(parts[0]) + 2;
+    valueSunset = parts[0] + ":" + parts[1] + ":" + parts[2];
+
     // Sunrise tomorrow
     var countDownDateSunsetTomorrow = new Date(getMonthYeetTomorrow + " " + getDateYeetTomorrow + ", " + getYearYeetTomorrow + " " + valueSunrise).getTime();
     var dezeManBlijftVeesteLangKijken = 0;
@@ -266,8 +290,9 @@ function remainingTime(valueSunset, valueSunrise) {
     var distanceSunrise = countDownDateSunrise - now;
     var distanceSunriseTomorrow = countDownDateSunsetTomorrow - now;
 
-    //format ("Mar 29, 2019 6:08:21")
-    //var countDownDate = new Date("Mar 29, 2019 6:08:21").getTime();
+    // format ("Mar 29, 2019 6:08:21")
+    // var countDownDate = new Date("Mar 29, 2019 6:08:21").getTime();
+    // https://www.w3schools.com/howto/howto_js_countdown.asp
     if (distanceSunrise > 0) {
         // Show sunrise time
         night = "night";
