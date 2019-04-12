@@ -25,6 +25,7 @@ month[8] = "Sep";
 month[9] = "Oct";
 month[10] = "Nov";
 month[11] = "Dec";
+
 // changes
 // make an Array for getting images url
 var background_images = new Array();
